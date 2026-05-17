@@ -1247,6 +1247,19 @@ def pasodecebra():
         glPopMatrix()
     glPopMatrix()
 
+
+def linea_stop():
+    glPushMatrix()    
+    largo_x= 8
+    ancho_z= 15
+    solid_ortho(
+            int(largo_x),   # tamaño en X
+            2,              # grosor en Y
+            int(ancho_z),   # tamaño en Z
+            [grey_1])
+    glPopMatrix()
+
+
 def semaforo():
     escala = 0.5 # MODIFICAR AQUI PARA REDUCIR O AUMENTAR
     base_w = 18
@@ -1321,13 +1334,13 @@ def semaforo():
             glPopMatrix()
 
         def luz_arriba():
-            dibujar_luz(2, dark_green_range)
+            dibujar_luz(2, dark_red_range)
 
         def luz_medio():
             dibujar_luz(1, dark_yellow_range)
 
         def luz_abajo():
-            dibujar_luz(0, dark_red_range)
+            dibujar_luz(0, dark_green_range)
 
         luz_arriba()
         luz_medio()
@@ -1436,6 +1449,69 @@ def bicicleta():
     solid_ortho(5, 1, 1, color_asiento) # Barra transversal de 5 de ancho en X
     glPopMatrix()
 
+def nube(color = grey_range):
+    def bloque_grande(g_color):
+        # Cuerpo principal
+        empty_ortho(8, 8, 8, g_color)
+        
+        # Reborde frontal
+        glPushMatrix()
+        glTranslatef(-1, 1, 0)
+        solid_face_yz(6, 6, g_color)
+        glPopMatrix()
+
+        # Rebordes laterales
+        glPushMatrix()
+        glTranslatef(1, 1, -1)
+        solid_face_xy(6, 6, g_color)
+        glTranslatef(0, 0, 9)
+        solid_face_xy(6, 6, g_color)
+        glPopMatrix()
+
+        # Rebordes superior e inferior
+        glPushMatrix()
+        glTranslatef(1, 8, 1)
+        solid_face_xz(6, 6, g_color)
+        glTranslatef(0, -9, 0)
+        solid_face_xz(6, 6, g_color)
+        glPopMatrix()
+
+        # Reborde inferior
+        # glPushMatrix()
+        # glTranslatef(1, -1, 1)
+        # solid_face_xz(6, 6, g_color)
+        # glPopMatrix()
+
+
+    def bloque_medio(m_color):
+        empty_ortho(7, 6, 6, m_color)
+
+        # Reborde inferior
+        glPushMatrix()
+        glTranslatef(1, -1, 2)
+        solid_face_xz(5, 4, m_color)
+        glPopMatrix()
+
+    def bloque_pequeno(p_color):
+        empty_ortho(7, 4, 4, p_color)
+
+        # Reborde inferior
+        glPushMatrix()
+        glTranslatef(1, -1, 3)
+        solid_face_xz(5, 2, p_color)
+        glPopMatrix()
+
+    glPushMatrix()
+    glTranslatef(1, 1, 0)
+    bloque_grande(color)
+    glTranslatef(8, 0, 0)
+    bloque_medio(color)
+    glTranslatef(7, 0, 0)
+    bloque_pequeno(color)
+    glPopMatrix()
+
+    
+    
 def persona():
     color_piel = light_yellow_range          # Para cabeza y manos
     color_camiseta = light_blue_range      # Para cuerpo

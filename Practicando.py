@@ -12,16 +12,17 @@ import igv_3dobjects #Libreria de objetos recopilados y creados para la asignatu
 
 # Necesario para controlar qué objetos mostramos
 visibilidad = {
-    "ejes": False,
-    "coche": True,
-    "carril_bici": True,
-    "acerado": True,
-    "carretera": True,
-    "pasodecebra": True,
-    "semaforo": True,
-    "farola": True,
-    "nubes": True,
-    "bicicleta": True
+    "ejes": True,
+    "coche": False,
+    "carril_bici": False,
+    "acerado": False,
+    "carretera": False,
+    "pasodecebra": False,
+    "semaforo": False,
+    "farola": False,
+    "nubes": False,
+    "bicicleta": False,
+    "objeto_1": True
 }
 
 # Vista de Adrián
@@ -39,10 +40,13 @@ visibilidad = {
 # }
 
 
-axes_length = 100 # Máxima longitud de los ejes coordenados (se dibujarán desde -axes_length hasta +axes_length)
-xMin = yMin = zMin = - axes_length
-xMax = yMax = zMax = axes_length
-
+axes_length = 50 # Máxima longitud de los ejes coordenados (se dibujarán desde -axes_length hasta +axes_length)
+#xMin = yMin = zMin = - axes_length
+#xMax = yMax = zMax = axes_length
+xMin = yMin = - axes_length
+xMax = yMax = axes_length
+zMin = -30
+zMax = 30
 
 # Definición de colores
 grey = [128/255, 128/255, 128/255]
@@ -294,6 +298,7 @@ def draw_viewport(vp_x, vp_y, vp_w, vp_h, projection, lookAt, label):
         # PROYECCIÓN EN PERSPECTIVA SIMÉTRICA
         aspect = vp_w / vp_h
         # gluPerspective(50, aspect, 1, 60)
+        # gluPerspective(100, aspect, 1, 800)
         gluPerspective(100, aspect, 1, 800)
  
     else:   # "ortho"
@@ -313,7 +318,7 @@ def draw_viewport(vp_x, vp_y, vp_w, vp_h, projection, lookAt, label):
         x0=0.0; y0=0.0; z0=0.0;  xref=0.0;  yref=1.0; zref=0.0;  vx=0.0; vy=0.0; vz=1.0
     elif lookAt == "perspectiva":
         # x0=14.0; y0=12.0; z0=14.0;  xref=0.0; yref=3.0; zref=0.0;  vx=0.0; vy=1.0; vz=0.0
-        x0=90.0; y0=100.0; z0=70.0;  xref=0.0; yref=3.0; zref=0.0;  vx=0.0; vy=1.0; vz=0.0
+        x0=30.0; y0=30.0; z0=30.0;  xref=0.0; yref=-5.0; zref=0.0;  vx=0.0; vy=1.0; vz=0.0
     else:   # default (z-)
         x0=0.0; y0=0.0; z0=0.0;  xref=0.0;  yref=0.0; zref=-1.0;  vx=0.0; vy=1.0; vz=0.0
  
@@ -537,6 +542,12 @@ def draw_mundo_b():
         glScalef(1.5, 1.5, 1.5)
         igv_3dobjects.persona()
         glPopMatrix()
+
+    if visibilidad["objeto_1"]:
+        glPushMatrix()
+        igv_3dobjects.objeto_1()
+        glPopMatrix()
+
 
 def main():
     init_gl()

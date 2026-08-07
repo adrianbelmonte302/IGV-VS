@@ -1249,14 +1249,16 @@ def pasodecebra():
 
 
 def linea_stop():
-    glPushMatrix()    
-    largo_x= 8
-    ancho_z= 15
+    glPushMatrix()        
+    largo_x= 37
+    ancho_z= 4
+ 
+    glRotatef(90, 0, 1, 0)
     solid_ortho(
             int(largo_x),   # tamaño en X
             2,              # grosor en Y
             int(ancho_z),   # tamaño en Z
-            [grey_1])
+            [grey_1]) 
     glPopMatrix()
 
 
@@ -1588,13 +1590,113 @@ def persona():
     glPopMatrix()
 
 
-def linea_stop():
-    glPushMatrix()    
-    largo_x= 8
-    ancho_z= 15
-    solid_ortho(
-            int(largo_x),   # tamaño en X
-            2,              # grosor en Y
-            int(ancho_z),   # tamaño en Z
-            [grey_1])
+def objeto_1():
+    ### Caja TNT
+
+    def caja_naranja():
+        glPushMatrix()
+        empty_ortho(16,6,16,dark_red_range)
+        glPopMatrix()
+
+    def caja_blanca():
+        glPushMatrix()
+        glTranslatef(0,6,0)
+        empty_ortho(16,6,16,light_grey_range)
+        glPopMatrix()
+
+    def letras():
+        glPushMatrix()
+
+        ### T
+        glTranslatef(3,1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(-1,0,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(2,0,0)
+        igv_utils.color_cube(black_5)
+
+        ### N
+
+        glTranslatef(2,0,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,-1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,-1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,-1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(1,2,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(1,-1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(1,-1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,1,0)
+        igv_utils.color_cube(black_5)
+
+        ### T
+        glTranslatef(3,-3,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(0,1,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(-1,0,0)
+        igv_utils.color_cube(black_5)
+
+        glTranslatef(2,0,0)
+        igv_utils.color_cube(black_5)
+
+        glPopMatrix()
+
+    glPushMatrix()
+
+    caja_naranja()
+
+    caja_blanca()
+
+    glTranslatef(0,12,0)
+    caja_naranja()
+
+    glTranslatef(0,-6,16)
+    letras()
+
+    glPopMatrix()
+
+    glPushMatrix()
+
+    glTranslatef(15,6,-1)
+    glRotatef(180, 0, 1, 0)
+    letras()
+
     glPopMatrix()
